@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\API\CategoryController;
+use  App\Http\Controllers\AuthController;
+
 
 
 /*
@@ -23,4 +25,23 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(["middleware" => "checkPassword"], function () {
     Route::post("/categories", [CategoryController::class, "index"])->name("categories");
+});
+
+
+Route::group(["middleware" => "admin-api"], function () {
+    Route::post("/adminCategories", [CategoryController::class, "index"])->name("categories");
+});
+
+Route::group([
+
+    'middleware' => ['api'],
+    'prefix' => 'auth'
+
+], function ($router) {
+
+    Route::post('login', [AuthController::class, "login"]);
+    // Route::post('logout', 'AuthController@logout');
+    // Route::post('refresh', 'AuthController@refresh');
+    Route::post('me', [AuthController::class, "me"]);
+    Route::post('token', [AuthController::class, "getToken"]);
 });

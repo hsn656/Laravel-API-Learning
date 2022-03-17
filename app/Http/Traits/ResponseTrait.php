@@ -2,11 +2,10 @@
 
 namespace App\Http\Traits;
 
-use GrahamCampbell\ResultType\Success;
 
 trait ResponseTrait
 {
-    public function returnResponse($statuscode, $msg, $data, $isSuccess)
+    public function returnResponse(int $statuscode, string $msg,$data, bool $isSuccess)
     {
         return response()->json(
             [
