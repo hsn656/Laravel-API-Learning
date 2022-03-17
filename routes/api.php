@@ -21,6 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::group(["middleware" => "api"], function () {
-    Route::get("/categories", [CategoryController::class, "index"])->name("categories");
+Route::group(["middleware" => "checkPassword"], function () {
+    Route::post("/categories", [CategoryController::class, "index"])->name("categories");
 });
