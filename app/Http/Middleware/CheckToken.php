@@ -23,7 +23,7 @@ class CheckToken
         $payload = auth()->payload();
 
         if ($payload["role"] !== "admin")
-            return $this->returnResponse(403,);
+            return $this->returnResponse(403, "not authorized", [], false);
 
         return $next($request);
     }

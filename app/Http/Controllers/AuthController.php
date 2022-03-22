@@ -5,20 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use GuzzleHttp\Psr7\Request;
-use Illuminate\Support\Facades\Redis;
-use Tymon\JWTAuth\Facades\JWTFactory;
-use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
-
-
 
 
 class AuthController extends Controller
 {
     /**
      * Create a new AuthController instance.
-     *
+     * func
      * @return void
      */
     public function __construct()
@@ -41,7 +35,7 @@ class AuthController extends Controller
         // JWTAuth::fromUser($user)
         $customClaims = [
             'email' => $user->email,
-            'role' => $user->role
+            'role' => $user->role,
         ];
 
         if (!$token = JWTAuth::claims($customClaims)->attempt($credentials)) {
@@ -99,12 +93,13 @@ class AuthController extends Controller
         ]);
     }
 
+    //added by me to get token payload
     public function getToken()
     {
         // $token = request()->header()["authorization"];
         $user = JWTAuth::parseToken()->authenticate();
-        // return response()->json(auth()->payload());
+        return response()->json(auth()->payload());
 
-        return response()->json($user);
+        // return response()->json($user);
     }
 }

@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\API\PostController;
 use  App\Http\Controllers\AuthController;
 
 
@@ -44,4 +45,9 @@ Route::group([
     // Route::post('refresh', 'AuthController@refresh');
     Route::post('me', [AuthController::class, "me"]);
     Route::post('token', [AuthController::class, "getToken"]);
+});
+
+
+Route::group([], function ($router) {
+    Route::get("posts", [PostController::class, "index"]);
 });
