@@ -1,5 +1,6 @@
 <?php
 
+use App\Jobs\LogUserJob;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Monolog\Processor\ProcessIdProcessor;
@@ -16,8 +17,7 @@ use Monolog\Processor\ProcessIdProcessor;
 */
 
 Route::get('/', function () {
-    dispatch(function () {
-        Log::debug("hi");
-    });
+  //  dispatch(new LogUserJob());
+  LogUserJob::dispatch();
     return view('welcome');
 });
