@@ -12,7 +12,8 @@ trait ResponseTrait
                 "data" => $data,
                 "msg" => $msg,
                 "isSuccess" => $isSuccess,
-                "errors" => $errors
+                "errors" => $errors,
+                "statusCode" => $statuscode
             ]
         )->setStatusCode($statuscode);
     }

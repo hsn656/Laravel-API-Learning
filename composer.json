@@ -14,6 +14,7 @@
     "laravel/installer": "^4.2",
     "laravel/sanctum": "^2.14.1",
     "laravel/tinker": "^2.7",
+    "predis/predis": "^1.1",
     "tomfordrumm/jwt-auth": "dev-develop"
   },
   "require-dev": {

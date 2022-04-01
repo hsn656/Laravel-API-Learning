@@ -9,18 +9,30 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    use ResponseTrait;
+
 
     public function __construct()
     {
-        $this->middleware("checkToken");
+        // $this->middleware("checkToken");
     }
-
-
-    use ResponseTrait;
 
     public function index()
     {
         $posts = Post::with("user")->get();
         return $this->returnResponse(200, "success", $posts, true);
     }
+
+    public function getPost(int $id)
+    {
+        $post = Post::with("user")->where("id",$id)->get();
+
+        if(!$post)
+            return $this->returnResponse(400,);
+
+
+        return $this->returnResponse(200, "success", $posts, true);
+    }
+
+
 }

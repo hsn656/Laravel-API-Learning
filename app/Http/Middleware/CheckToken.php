@@ -19,9 +19,7 @@ class CheckToken
      */
     public function handle(Request $request, Closure $next)
     {
-
         $payload = auth()->payload();
-
         if ($payload["role"] !== "admin")
             return $this->returnResponse(403, "not authorized", [], false);
 
